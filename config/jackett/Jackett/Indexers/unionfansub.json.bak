@@ -1,0 +1,54 @@
+[
+  {
+    "id": "sitelink",
+    "type": "inputstring",
+    "name": "Site Link",
+    "value": "https://torrent.unionfansub.com/"
+  },
+  {
+    "id": "cookieheader",
+    "type": "hiddendata",
+    "name": "CookieHeader",
+    "value": "loginattempts=1; mybbuser=151123_N3Sinf9URwoTWa6M9WbWtEMCkkKLDPbg9G4Vmwf5pdv5YDCnfi; sid=3c1776aae4ed045cd14ea27030d382ff; userid=151123_Cenadros"
+  },
+  {
+    "id": "lasterror",
+    "type": "hiddendata",
+    "name": "LastError",
+    "value": ""
+  },
+  {
+    "id": "username",
+    "type": "inputstring",
+    "name": "Username",
+    "value": "Cenadros"
+  },
+  {
+    "id": "password",
+    "type": "inputstring",
+    "name": "Password",
+    "value": "CfDJ8G0nfYjB4R1OjsHPBHsJ_I01eEAJKorMm9VqhoouJQEp8fJEVE1GGvf33Xb-FoweY3IcLloZe_l1kbf4YcBTMI7hFNmo5OfEgyDRbgLXyjCywCnWkne_DV8Y42uXYuSV-Q"
+  },
+  {
+    "id": "sortrequestedfromsite",
+    "type": "inputselect",
+    "name": "Sort requested from site",
+    "value": "4",
+    "options": {
+      "4": "created",
+      "7": "seeders",
+      "5": "size",
+      "1": "title"
+    }
+  },
+  {
+    "id": "orderrequestedfromsite",
+    "type": "inputselect",
+    "name": "Order requested from site",
+    "value": "desc",
+    "options": {
+      "desc": "desc",
+      "asc": "asc"
+    }
+  }
+]
