@@ -2,7 +2,7 @@ version: "3.4"
 
 services:
   qbittorrent:
-    image: linuxserver/qbittorrent
+    image: linuxserver/qbittorrent:14.2.5.99202004250119-7015-2c65b79ubuntu18.04.1-ls93
     restart: unless-stopped
     hostname: qbittorrent
     container_name: qbittorrent
@@ -37,7 +37,7 @@ services:
 
   sonarr:
     container_name: sonarr
-    image: linuxserver/sonarr:latest
+    image: linuxserver/sonarr:preview
     restart: unless-stopped
     hostname: sonarr
     environment:
@@ -87,3 +87,36 @@ services:
       - ./downloads/complete/anime:/anime # anime shows folder
     ports:
       - 6767:6767
+
+  muximux:
+    image: linuxserver/muximux
+    restart: unless-stopped
+    container_name: muximux
+    hostname: muximux
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ} # timezone, defined in .env
+    volumes:
+      - ./config/muximux:/config
+    ports:
+      - 10001:80
+
+  plex:
+    image: linuxserver/plex
+    container_name: plex
+    hostname: plex
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - VERSION=docker
+    volumes:
+      - ./config/plex:/config
+      - ./downloads/complete/tv:/tv
+      - ./downloads/complete/movies:/movies
+      - ./downloads/complete/anime:/anime
+    ports:
+      - 32400:32400
+
+

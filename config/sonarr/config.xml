@@ -7,8 +7,8 @@
   <EnableSsl>False</EnableSsl>
   <ApiKey>3c30e58d3bab453fbc3acccfe164033e</ApiKey>
   <AuthenticationMethod>None</AuthenticationMethod>
-  <Branch>master</Branch>
+  <Branch>phantom-develop</Branch>
   <LaunchBrowser>True</LaunchBrowser>
   <SslCertHash></SslCertHash>
-  <UpdateMechanism>BuiltIn</UpdateMechanism>
+  <UpdateMechanism>Docker</UpdateMechanism>
 </Config>
