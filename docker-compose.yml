@@ -100,7 +100,7 @@ services:
     volumes:
       - ./config/muximux:/config
     ports:
-      - 10001:80
+      - 80:80
 
   plex:
     image: linuxserver/plex
@@ -118,5 +118,22 @@ services:
       - ./downloads/complete/anime:/anime
     ports:
       - 32400:32400
+
+  ombi:
+    image: linuxserver/ombi
+    restart: unless-stopped
+    container_name: ombi
+    hostname: ombi
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ} # timezone, defined in .env
+    volumes:
+      - ./config/ombi:/config
+      - ./shared:/shared
+    ports:
+      - 3579:3579
+
+        
 
 
