@@ -15,7 +15,7 @@
     "id": "lasterror",
     "type": "hiddendata",
     "name": "LastError",
-    "value": null
+    "value": "Exception (anidex): Anidex search returned unexpected result. Expected 200 OK but got InternalServerError.: Anidex search returned unexpected result. Expected 200 OK but got InternalServerError."
   },
   {
     "id": "language",

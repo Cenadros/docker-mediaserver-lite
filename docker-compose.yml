@@ -108,23 +108,22 @@ services:
       traefik.http.services.bazarr.loadbalancer.server.port: 6767
       traefik.http.routers.bazarr.middlewares: traefik-forward-auth
 
-  muximux:
-    image: linuxserver/muximux:latest
-    restart: unless-stopped
-    container_name: muximux
-    hostname: muximux
+  organizr:
+    image: organizr/organizr
+    container_name: organizr
     environment:
       - PUID=${PUID} # default user id, defined in .env
       - PGID=${PGID} # default group id, defined in .env
       - TZ=${TZ} # timezone, defined in .env
     volumes:
-      - ./config/muximux:/config
+      - ./config/organizr:/config
     ports:
-      - 8083:80
+      - 9983:80
+    restart: unless-stopped
     labels:
-      traefik.http.routers.muximux.rule: Host(`julastorrent.com`, `localhost`)
-      traefik.http.services.muximux.loadbalancer.server.port: 80
-      traefik.http.routers.muximux.middlewares: traefik-forward-auth
+      traefik.http.routers.organizr.rule: Host(`julastorrent.com`, `localhost`)
+      traefik.http.services.organizr.loadbalancer.server.port: 80
+      traefik.http.routers.organizr.middlewares: traefik-forward-auth
 
   plex:
     image: linuxserver/plex:latest
@@ -166,23 +165,23 @@ services:
       traefik.http.routers.ombi.middlewares: traefik-forward-auth
 
   calibre:
-    image: linuxserver/calibre
-    restart: unless-stopped
+    image: linuxserver/calibre-web:0.6.7-ls64
     container_name: calibre
     hostname: calibre
     environment:
       - PUID=${PUID} # default user id, defined in .env
       - PGID=${PGID} # default group id, defined in .env
-      - TZ=${TZ} # timezone, defined in .env    
+      - TZ=${TZ} # timezone, defined in .env
+      - DOCKER_MODS=linuxserver/calibre-web:calibre
     volumes:
       - ./config/calibre:/config
-      - ./downloads/complete/books:/config/books
+      - ./downloads/complete/books:/books
     ports:
-      - 8082:8080
-      - 8081:8081
+      - 8093:8083
+    restart: unless-stopped
     labels:
       traefik.http.routers.calibre.rule: Host(`calibre.$DOMAIN_NAME`, `calibre.localhost`)
-      traefik.http.services.calibre.loadbalancer.server.port: 8080
+      traefik.http.services.calibre.loadbalancer.server.port: 8083
       traefik.http.routers.calibre.middlewares: traefik-forward-auth
 
   portainer:
@@ -234,6 +233,26 @@ services:
       - API_KEY=${CLOUDFLARE_API}
       - ZONE=${DOMAIN_NAME} 
       - PROXIED=true
+
+  cloudflare-companion:
+    image: tiredofit/traefik-cloudflare-companion
+    restart: unless-stopped
+    container_name: cloudflare-companion
+    volumes:
+      - //var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ} # timezone, defined in .env
+      - TRAEFIK_VERSION=2
+      - CF_TOKEN=${CLOUDFLARE_API}
+      - TARGET_DOMAIN=${DOMAIN_NAME}
+      - DOMAIN1=${DOMAIN_NAME}
+      - DOMAIN1_ZONE_ID=${CLOUDFLARE_ZONE_ID}
+      - DOMAIN1_PROXIED=TRUE
+      #- DOCKER_HOST=tcp://198.51.100.32:2376
+      #- DOCKER_CERT_PATH=/docker-certs
+      #- DOCKER_TLS_VERIFY=1
 
   oauth:
     container_name: oauth
