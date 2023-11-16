@@ -47,3 +47,4 @@
 {"label":"Jellyfin Sync","level":"info","message":"Beginning to process recently added for library: Anime","timestamp":"2023-11-16T16:15:00.103Z"}
 {"label":"Jellyfin Sync","level":"info","message":"Recently Added Scan Complete","timestamp":"2023-11-16T16:15:00.108Z"}
 {"label":"Jobs","level":"debug","message":"Starting scheduled job: Download Sync","timestamp":"2023-11-16T16:16:00.016Z"}
+{"label":"Jobs","level":"debug","message":"Starting scheduled job: Download Sync","timestamp":"2023-11-16T16:17:00.048Z"}
