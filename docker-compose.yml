@@ -31,7 +31,7 @@ services:
       - PGID=${PGID} # default group id, defined in .env
       - TZ=${TZ} # timezone, defined in .env
       - SERVERPORT=51820
-      - SERVERURL=wireguard.julastorrent.com #optional - For use with DDNS (Uncomment to use)
+      - SERVERURL=wireguard.${DOMAIN_NAME}  #optional - For use with DDNS (Uncomment to use)
       - PEERS=1 # How many peers to generate for you (clients)
       - PEERDNS=10.2.0.100 # Set it to point to adguard home
       - INTERNAL_SUBNET=10.6.0.0
