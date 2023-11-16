@@ -3885,3 +3885,5 @@
  -- : Query successful, but no results in the configured categories were returned from your indexer. This may be an issue with the indexer or your indexer category settings.
 2023-11-16 17:03:40.9|Warn|RadarrErrorPipeline|Invalid request Validation failed: 
  -- : Query successful, but no results in the configured categories were returned from your indexer. This may be an issue with the indexer or your indexer category settings.
+2023-11-16 17:17:52.2|Info|Microsoft.Hosting.Lifetime|Application is shutting down...
+2023-11-16 17:17:52.4|Info|ConsoleApp|Exiting main.
